@@ -3,6 +3,7 @@ import Description from './components/Description/Description';
 import Options from './components/Options/Options';
 import Feedback from './components/Feedback/Feedback';
 import Notification from './components/Notification/Notification';
+import styles from './App.module.css';
 
 export default function App() {
   const [feedback, setFeedback] = useState(() => {
@@ -33,13 +34,15 @@ export default function App() {
     : 0;
 
   return (
-    <>
-      <Description />
-      <Options
-        updateFeedback={updateFeedback}
-        totalFeedback={totalFeedback}
-        resetFeedback={resetFeedback}
-      />
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <Description />
+        <Options
+          updateFeedback={updateFeedback}
+          totalFeedback={totalFeedback}
+          resetFeedback={resetFeedback}
+        />
+      </div>
       {totalFeedback > 0 ? (
         <Feedback
           good={feedback.good}
@@ -51,6 +54,6 @@ export default function App() {
       ) : (
         <Notification />
       )}
-    </>
+    </div>
   );
 }
